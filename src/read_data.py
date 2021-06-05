@@ -13,6 +13,5 @@ def read_exp(exp_num):
     y_test = np.load(name4)
 
     print('Experiment: ' + str(exp_num))
-    print('The data are x_train,y_train,x_test,y_test')
 
     return x_train,y_train,x_test,y_test
