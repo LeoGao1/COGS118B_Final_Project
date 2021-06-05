@@ -10,7 +10,7 @@ from sklearn.metrics import f1_score
 from read_data import read_exp
 
 #apply PCA, parameters: n_components,data
-from pca import PCA_calcV 
+from pca import PCA_calcV,PCA_transform 
 
 def model_metrics (model_name, model_func, if_pca , pca_dim = 2):
 
@@ -28,8 +28,11 @@ def model_metrics (model_name, model_func, if_pca , pca_dim = 2):
 
         #apply pca
         if(if_pca):
-            x_train = PCA_calcV(pca_dim,x_train.T)
-            x_test = PCA_calcV(pca_dim,x_test.T)
+            #x_train = PCA_calcV(pca_dim,x_train)
+            #x_test = PCA_calcV(pca_dim,x_test)
+            vecs = PCA_calcV(pca_dim,x_train)
+            x_train = PCA_transform(vecs,x_train)
+            x_test = PCA_transform(vecs,x_test)
 
         #build model
         y_train_pred, y_test_pred = model_func(x_train,y_train,x_test,y_test)
