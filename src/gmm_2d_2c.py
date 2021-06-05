@@ -27,7 +27,7 @@ def gmm_2d_2class(x_train,x_test,y_train,y_test):
         denominator = numerator.sum(axis=1)[:, np.newaxis]
         weights = numerator / denominator
         
-        sphi = weights.mean(axis=0)    
+        phi = weights.mean(axis=0)    
             
         # M-Step: update means and covMat holding phi and weights constant
         for i in range(2):
