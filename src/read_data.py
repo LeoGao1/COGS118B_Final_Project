@@ -2,7 +2,6 @@
 import numpy as np
 
 def read_exp(exp_num):
-    exp_num = 1
     name1 = '../data/x_train_'+str(exp_num)+'.npy'
     name2 = '../data/y_train_'+str(exp_num)+'.npy'
     name3 = '../data/x_test_'+str(exp_num)+'.npy'
