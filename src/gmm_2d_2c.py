@@ -1,10 +1,10 @@
 import numpy as np
-from scipy.stats import meansltivariate_normal
+from scipy.stats import multivariate_normal
 #Modified from #http://www.oranlooney.com/post/ml-from-scratch-part-5-gmm/
 #Works on 2 dimension 2 class data, in order to fit our datasets.
 #The algorithm only cluster x_train with y_train to initialize the means.
 #Other inputs and outputs are not meaningful, but kept to feed this algorithm to calculate_metices.py
-def gmm_2d_2class(x_train,x_test,y_train,y_test):
+def gmm_2d_2class(x_train,y_train,x_test,y_test):
     n,m = x_train.shape
     phi = np.full(shape=2, fill_value=1/2)
     weights = np.full(shape=(n,m), fill_value=1/2)
@@ -20,7 +20,7 @@ def gmm_2d_2class(x_train,x_test,y_train,y_test):
         # E-Step: update weights and phi holding means and covMat constant
         likelihood = np.zeros( (n, 2) )
         for i in range(2):
-            distribution = meansltivariate_normal(mean=means[i], cov=covMat[i])
+            distribution = multivariate_normal(mean=means[i], cov=covMat[i])
             likelihood[:,i] = distribution.pdf(x_train)
         
         numerator = likelihood * phi
