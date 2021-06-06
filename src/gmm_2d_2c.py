@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 #Modified from #http://www.oranlooney.com/post/ml-from-scratch-part-5-gmm/
 #Works on 2 dimension 2 class data, in order to fit our datasets.
-#The algorithm only cluster x_train with y_train to initialize the means.
-#Other inputs and outputs are not meaningful, but kept to feed this algorithm to calculate_metices.py
+#The algorithm clusters x_train with y_train to initialize the means.
+#X_test and y_test are used to do the classificationtask in calculate_metices.py
 def gmm_2d_2class(x_train,y_train,x_test,y_test):
     n,m = x_train.shape
     phi = np.full(shape=2, fill_value=1/2)
@@ -39,7 +39,7 @@ def gmm_2d_2class(x_train,y_train,x_test,y_test):
             covMat[i] = np.cov(x_train.T, aweights=(weight/total_weight).flatten(), bias=True)
 
     training_predicted = np.argmax(weights, axis=1)
-    #clustering algorithm, not intended to be able to be used on untrained data,return y_test directly.
+    #label test datapoint based on the likelihood of falling in which cluster
     n_test = len(x_test)
     likelihood_test = np.zeros( (n_test, 2) )
     for i in range(2):
@@ -105,7 +105,7 @@ def gmm_3d_2class(x_train,y_train,x_test,y_test):
             covMat[i] = np.cov(x_train.T, aweights=(weight/total_weight).flatten(), bias=True)
 
     training_predicted = np.argmax(weights, axis=1)
-    #clustering algorithm, not intended to be able to be used on untrained data,return y_test directly.
+    #label test datapoint based on the likelihood of falling in which cluster
     n_test = len(x_test)
     likelihood_test = np.zeros( (n_test, 2) )
     for i in range(2):
