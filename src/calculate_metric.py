@@ -40,8 +40,8 @@ def model_metrics (model_name, model_func,if_gray_scale, if_pca, pca_dim = 2):
         #apply pca
         if(if_pca):
             scaler = StandardScaler()
-            x_train = scaler.fit_transform([i.flatten() for i in x_train])
-            x_test = scaler.fit_transform([i.flatten() for i in x_test])
+            x_train = scaler.fit_transform(x_train)
+            x_test = scaler.fit_transform(x_test)
             vecs = PCA_calcV(pca_dim,x_train)
             x_train = PCA_transform(vecs,x_train)
             x_test = PCA_transform(vecs,x_test)
